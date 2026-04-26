@@ -3,9 +3,10 @@ import cheers from './assets/cheers.svg';
 import cake from './assets/cake.png';
 import rings from './assets/rings.png';
 import clock from './assets/clock.png';
-import photoSrc from './assets/photo.jpg';
+import photoSrc from './assets/image.png';
 import qrCode from './assets/qrCode.png';
 import flowers from './assets/flowers.png';
+import heart from './assets/heart.png';
 import dog from './assets/dog.png';
 import fontUrl from './assets/New-YorkerC.ttf';
 
@@ -731,7 +732,7 @@ const BowSVG = () => (
 );
 
 const HeartSVG = () => (
-  <svg viewBox="0 0 280 260" className="heart-bg" xmlns="http://www.w3.org/2000/svg">
+  <svg viewBox="0 0 20 25" xmlns="http://www.w3.org/2000/svg">
     <path
       d="M140 220 C140 220 20 155 20 85 C20 50 48 28 80 28 C100 28 118 38 130 54 C132 57 136 60 140 60 C144 60 148 57 150 54 C162 38 180 28 200 28 C232 28 260 50 260 85 C260 155 140 220 140 220Z"
       fill="#e8a0b0"
@@ -857,11 +858,23 @@ export default function WeddingInvitation() {
   const [showRsvp, setShowRsvp] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [form, setForm] = useState({ name: "", guests: "1", attending: "yes" });
-const timeLeft = useCountdown("2026-08-02T15:00:00");
+  const timeLeft = useCountdown("2026-08-02T15:00:00");
   const calCells = buildCalendar(AUGUST_2026);
-  const handleSubmit = ()=> {
-    console.log("test")
-  }
+  const handleSubmit = async () => {
+    await fetch("https://wedding-bot-ylj2.onrender.com/send", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name:      form.name,
+        attending: form.attending,
+      }),
+    });
+
+    // После отправки — открыть чат
+    window.open(TELEGRAM_LINK, "_blank");
+    setShowRsvp(false);
+  };
+
   const pad = (n) => String(n).padStart(2, "0");
 
   return (
@@ -885,7 +898,6 @@ const timeLeft = useCountdown("2026-08-02T15:00:00");
         {/* ── PHOTO ── */}
         <div className="photo-section">
           <div className="heart-frame">
-            {/* <HeartSVG /> */}
             <label className="photo-placeholder" style={{ cursor: "pointer" }}>
                 <img src={photoSrc} alt="Фото пары" />
             </label>
@@ -1030,10 +1042,7 @@ const timeLeft = useCountdown("2026-08-02T15:00:00");
         {/* ── FOOTER ── */}
         <div className="footer">
           <div className="ornament-line">
-            <svg viewBox="0 0 20 20" width="18" height="18">
-              <path d="M10 2 C10 2 4 6 4 10 C4 14 10 18 10 18 C10 18 16 14 16 10 C16 6 10 2 10 2Z"
-                fill="#e8a0b0" opacity="0.7" />
-            </svg>
+            <img src={heart} alt="heart" width={30} />
           </div>
           <div className="footer-bye">До встречи!</div>
         </div>
@@ -1091,6 +1100,7 @@ const timeLeft = useCountdown("2026-08-02T15:00:00");
                 href={TELEGRAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={handleSubmit}
               >
                 Перейти в чат
               </a>)}
@@ -1101,6 +1111,7 @@ const timeLeft = useCountdown("2026-08-02T15:00:00");
                 href={TELEGRAM_LINK}
                 target="_blank"
                 rel="noopener noreferrer"
+                 onClick={handleSubmit}
               >
                 Отправить
               </a>)}
