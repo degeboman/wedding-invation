@@ -989,8 +989,8 @@ export default function WeddingInvitation() {
         <div className="pink-card">
           <div className="card-title">Миссия для гостей</div>
           <p className="card-text">
-           Найти цветок, который ассоциируется с невестой,<br/> и привезти с собой.<br/>
-           Из них мы создадим особенное украшение праздника!
+           Найти цветок, который <br/> ассоциируется с невестой, <br/>и привезти с собой.<br/>
+           Из них мы создадим особенное<br/> украшение праздника!
           </p>
           <DovesSVG />
         </div>
@@ -1030,7 +1030,7 @@ export default function WeddingInvitation() {
         <div className="rsvp-card">
           <div className="card-title">Вы придёте?</div>
           <p className="card-text">
-            Мы будем очень рады видеть вас на нашем торжестве!<br/>
+            Мы будем очень рады видеть вас<br/> на нашем торжестве!<br/>
 Будет красиво, вкусно и очень по-любви.<br/>
 Женя, Ксюша, Тёрк
           </p>
