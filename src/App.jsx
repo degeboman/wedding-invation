@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import cheers from './assets/cheers.svg';
+import cheers from './assets/cheers.png';
 import cake from './assets/cake.png';
 import rings from './assets/rings.png';
 import clock from './assets/clock.png';
@@ -9,6 +9,7 @@ import flowers from './assets/flowers.png';
 import heart from './assets/heart.png';
 import dog from './assets/dog.png';
 import fontUrl from './assets/New-YorkerC.ttf';
+import mapGanka from './assets/gankamap.png';
 
 const TELEGRAM_LINK = "https://t.me/+GUQaNuzAfM1mNDFi";
 
@@ -861,7 +862,7 @@ export default function WeddingInvitation() {
   const timeLeft = useCountdown("2026-08-02T15:00:00");
   const calCells = buildCalendar(AUGUST_2026);
   const handleSubmit = async () => {
-    await fetch("https://wedding-bot-ylj2.onrender.com/send", {
+    await fetch("https://hammerhead-app-xw9wl.ondigitalocean.app/send", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -931,6 +932,25 @@ export default function WeddingInvitation() {
           </div>
         </div>
 
+        <div className="photo-section">
+          <div className="section-title">Место проведения</div>
+          <p className="invitation-text">
+             Агроусадьба Ганка. Находится в 50км от Минска
+          </p>
+
+          <p><br/></p>
+           <label className="photo-placeholder" style={{ cursor: "pointer" }}>
+              
+               <a
+                target="_blank"
+                rel="noopener noreferrer" 
+                href="https://yandex.ru/maps/org/ganka/1017457615/?l=night&ll=27.083714%2C54.048309&mode=search&rtext=53.901178%2C27.558229~54.048309%2C27.083714&rtt=auto&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D1017457615&sctx=ZAAAAAgBEAAaKAoSCaWfcHZrJTtAEXsRbcfU%2FUpAEhIJg%2FjAjv%2FC%2Fj8ReGLWi6Gc5j8iBgABAgMEBSgKOABAvucBSAFiWHJlYXJyPXNjaGVtZV9Mb2NhbC9HZW8vQWR2ZXJ0cy9SZWFycmFuZ2VCeUF1Y3Rpb24vU2ltaWxhck9yZ3NMaXN0QXVjdGlvbi9QYWdlSWQ9MTkwOTIwNDBqAmJ5nQHNzMw9oAEAqAEAvQE6CG5jwgEFz9eU5QOCAgrQs9Cw0L3QutCwigIAkgIAmgIMZGVza3RvcC1tYXBz&sll=27.083714%2C54.048309&sspn=0.015020%2C0.005512&text=%D0%B3%D0%B0%D0%BD%D0%BA%D0%B0&z=17">
+ <img src={mapGanka} alt="Фото пары"/>
+                  </a>
+           
+            </label>
+        </div>
+
         {/* ── COUNTDOWN ── */}
         <div className="countdown-section">
           <div className="section-title">До свадьбы осталось</div>
@@ -966,7 +986,6 @@ export default function WeddingInvitation() {
         {/* ── TIMELINE ── */}
         <div className="timeline-section">
           <div className="timeline-title">Тайминг дня</div>
-
           {[
             { time: "15:00", label: "сбор гостей", Icon: ClockIcon },
             { time: "16:00", label: "церемония", Icon: RingsIcon },
